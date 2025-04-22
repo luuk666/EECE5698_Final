@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import median_filter
 from scipy.fftpack import fft2, fftshift, ifftshift, ifft2
 
-# 👉 加载原始深度图
+# 加载原始深度图
 raw = np.load("output/example-midas_v21_small_256.npy")
 
-# 👉 滤波函数：中值 + 傅里叶低通
+# 滤波函数：中值 + 傅里叶低通
 def apply_median_and_fourier_filter(depth, median_size=5, cutoff=0.1):
-    medianed = median_filter(depth, size=median_size)
+    medianed = median_filter(depth, size=5)
 
     f = fft2(medianed)
     fshift = fftshift(f)
