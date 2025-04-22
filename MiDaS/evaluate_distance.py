@@ -3,47 +3,48 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-# 👇 修改为你自己的数据
-# 格式：[("描述", 实际距离cm, 相对深度值)]
+# 格式: (名称, 实际距离cm, 滤波后深度值)
 measurements = [
-    ("A4纸中心", 29.7, 0.312),
-    ("瓶子",     45.0, 0.471),
-    ("显示器",   60.0, 0.607),
-    ("书本",     35.0, 0.382),
-    ("键盘",     50.0, 0.538)
+    ("Vitamin", 30.0, 289.5337),
+    ("Theanine", 50.0, 561.2368),
+    ("Magtein", 70.0, 785.0587)
 ]
 
-# === 标定 ===
-# 比如你用的是 A4纸，它的实际距离是 29.7 cm，对应相对深度是 0.312
+
+# 用第一个点进行标定（维生素）
 scale_point = measurements[0]
 scale_factor = scale_point[1] / scale_point[2]
 
-# === 计算 ===
-labels = []
-gt = []
-pred = []
+# 输出换算比例
+print(f"🔧 标定点: {scale_point[0]} — scale = {scale_factor:.6f} cm/unit\n")
 
-for label, real_dist, depth_val in measurements:
-    if label != scale_point[0]:  # 跳过标定点
-        est_dist = depth_val * scale_factor
-        labels.append(label)
+# 初始化
+labels, gt, pred = [], [], []
+
+# 计算每个点的估算距离
+for name, real_dist, depth in measurements:
+    est = depth * scale_factor
+    print(f"{name}: GT = {real_dist:.2f} cm | 估算 = {est:.2f} cm")
+    if name != scale_point[0]:  # 排除标定点
+        labels.append(name)
         gt.append(real_dist)
-        pred.append(est_dist)
-        print(f"{label} → GT: {real_dist:.2f} cm | 估算: {est_dist:.2f} cm")
+        pred.append(est)
 
+# 误差评估
 mae = mean_absolute_error(gt, pred)
-rmse = mean_squared_error(gt, pred, squared=False)
+rmse = mean_squared_error(gt, pred) ** 0.5
 print(f"\n📊 MAE: {mae:.2f} cm | RMSE: {rmse:.2f} cm")
 
-# === 可视化 ===
+# 可视化
 x = np.arange(len(labels))
-plt.figure(figsize=(8,5))
+plt.figure(figsize=(7, 4))
 plt.bar(x - 0.2, gt, width=0.4, label="Ground Truth")
 plt.bar(x + 0.2, pred, width=0.4, label="Estimated")
-plt.xticks(x, labels, rotation=20)
+plt.xticks(x, labels)
 plt.ylabel("Distance (cm)")
-plt.title("Real vs Estimated Distance")
-plt.legend()
+plt.title("Ground Truth vs Estimated Distance")
+plt.legend(["Ground Truth", "Estimated"])
+
 plt.tight_layout()
 plt.savefig("output/distance_error.png")
 plt.show()
