@@ -4,7 +4,7 @@ This project implements a complete pipeline for estimating **depth from a single
 To further improve depth quality, we apply **median filtering** and **Fourier-based low-pass filtering** for smoothing and noise suppression.
 
 > 🔧 Framework: Python + PyTorch + OpenCV + SciPy  
-> 📚 Project for EECE5698: Robotics Sensing & Navigation @ Northeastern University
+> 📚 Project for EECE5698: Visual Sensing and Computing @ Northeastern University
 
 ---
 
@@ -14,7 +14,7 @@ Traditional depth estimation often requires stereo vision or LiDAR, which are ex
 This project shows that with only one camera and a bit of math, we can:
 
 - Generate dense depth maps using MiDaS
-- Calibrate to real-world units using known object size (e.g., A4 paper)
+- Calibrate to real-world units using known object size (e.g., bottle)
 - Output actual object distances
 - Use filtering to improve robustness and visual quality
 
