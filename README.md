@@ -107,21 +107,6 @@ Once depth is estimated, we recover real-world distance by:
    ```
 4. Applying this scale to any other pixel’s depth value
 
----
-
-## 📊 Experimental Results
-
-| Method                     | MAE ↓    | RMSE ↓   |
-|----------------------------|----------|----------|
-| Raw Depth (MiDaS only)     | 0.315 m  | 0.427 m  |
-| + Median Filter            | 0.287 m  | 0.398 m  |
-| + Fourier Low-Pass Filter  | 0.251 m  | 0.362 m  |
-
-> Evaluation based on 5 different known-distance scenes using A4 paper and a ruler.  
-> Filtering significantly improves stability and smoothness.
-
----
-
 ## 🎯 Summary
 
 This project demonstrates that:
