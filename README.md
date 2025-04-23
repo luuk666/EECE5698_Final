@@ -99,7 +99,7 @@ This will show a 3-panel comparison of:
 
 Once depth is estimated, we recover real-world distance by:
 
-1. Selecting a known object in the image (e.g., A4 paper = 29.7cm)
+1. Selecting a known object in the image (e.g., Vitamin bottle = 29.7cm)
 2. Clicking on it to get the estimated relative depth value
 3. Using it to calculate a scale factor:  
    ```
@@ -112,7 +112,7 @@ Once depth is estimated, we recover real-world distance by:
 This project demonstrates that:
 
 - Monocular depth estimation is feasible with good accuracy
-- Post-processing (median + Fourier filtering) greatly enhances results
+- Post-processing (median + fourier filtering) greatly enhances results
 - Real-world distance can be retrieved using a single camera and a bit of calibration
 
 ---
