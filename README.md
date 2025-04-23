@@ -4,7 +4,7 @@ This project implements a complete pipeline for estimating **depth from a single
 To further improve depth quality, we apply **median filtering** and **Fourier-based low-pass filtering** for smoothing and noise suppression.
 
 > 🔧 Framework: Python + PyTorch + OpenCV + SciPy  
-> 📚 Project for EECE5698: Visual Sensing and Computing @ Northeastern University
+> 📚 Project for EECE5698 @ Northeastern University
 
 ---
 
